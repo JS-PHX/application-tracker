@@ -50,17 +50,19 @@ function App() {
   }
 
   useEffect(() => {
-    fetchApplications()
     async function getSession() {
-      const {data} = await supabase.auth.getSession()
-      if (data.session.user) {
+      const { data } = await supabase.auth.getSession()
+      if (data.session) {
         setUser(data.session.user)
       }
       setLoading(false)
     }
     getSession()
-  }, [user]),
-
+  }, [])
+  
+  useEffect(() => {
+    fetchApplications()
+  }, [user])
   
 
   async function handleDelete(id) {

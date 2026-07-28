@@ -23,12 +23,6 @@ h1 {
   color: #2563eb;
 }
 
-button {
-  padding: 10px;
-  border: 2px solid black;
-  margin: 20px;
-}
-
 form {
   display: flex;
   gap: 12px;

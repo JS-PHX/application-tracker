@@ -50,7 +50,16 @@ function App() {
 
   useEffect(() => {
     fetchApplications()
-  }, [user])
+    async function getSession() {
+      const {data} = await supabase.auth.getSession()
+      if (data.session.user) {
+        setUser(data.session.user)
+      }
+    }
+    getSession()
+  }, [user]),
+
+  
 
   async function handleDelete(id) {
     const {error} = await supabase
@@ -102,6 +111,8 @@ function App() {
       setUser(null)
     }
   }
+
+  
 
 
   return (

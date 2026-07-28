@@ -13,6 +13,7 @@ function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)  
+  const [loading, setLoading] = useState(true)
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -55,6 +56,7 @@ function App() {
       if (data.session.user) {
         setUser(data.session.user)
       }
+      setLoading(false)
     }
     getSession()
   }, [user]),
@@ -113,7 +115,7 @@ function App() {
   }
 
   
-
+  if (loading) return <p>Loading...</p>
 
   return (
     <div className="app-container">
@@ -122,13 +124,13 @@ function App() {
         <form>
           <input
             type='email'
-            placeholder='email'
+            placeholder='E-Mail'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type='password'
-            placeholder='password'
+            placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
